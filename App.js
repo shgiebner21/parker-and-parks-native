@@ -1,15 +1,28 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import store from './store'
+import {Provider} from 'react-redux'
+import React, { Component } from 'react'
+import { NativeRouter, Route } from 'react-router-native'
+import { StyleSheet, Text, View } from 'react-native'
+import { Constants } from 'expo'
+import NativeTachyons from 'react-native-style-tachyons'
+import LandingPage from './web/src/pages/landing'
+import Signup from './web/src/pages/signup'
+import Login from './web/src/pages/login'
+import Header from './web/src/components/header'
 
-export default class App extends React.Component {
+NativeTachyons.build({ rem: 16 }, StyleSheet)
+
+class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
-    );
+      <NativeRouter>
+        <View>
+          <Route exact path='/' component={LandingPage} />
+{ /*          <Route path='/signup' component={Signup} />
+          <Route path='/login' component={Login} />     */ }
+        </View>
+      </NativeRouter>
+    )
   }
 }
 
@@ -17,7 +30,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: Constants.statusBarHeight
   },
-});
+})
+
+export default () => {
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  )
+}
