@@ -1,14 +1,16 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import { View, ListView, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import { Link } from 'react-router-native'
 import NativeTachyons, { wrap } from 'react-native-style-tachyons'
 import { Octicons } from '@expo/vector-icons'
 import Welcome from '../components/welcome'
 import BasicButton from '../components/basic-button'
 
-NativeTachyons.build({ rem: 16}, StyleSheet)
+NativeTachyons.build({ rem: 16 }, StyleSheet)
 
 class LandingPage extends Component {
+
   render () {
 
     const txt = `Hi!  I'm Parker Bear.`
@@ -18,11 +20,18 @@ class LandingPage extends Component {
       <View >
         <Image source={require('../hampton-park-bandstand.jpg')}
              style={styles.backgroundImage} />
-           <Text cls='bg-red' style={styles.text}>{txt}</Text>
-        <Text cls='bg-red'>{txt2}</Text>
-          <View>
+           <Text cls='bg-red b' size={40} style={styles.text}>{txt}</Text>
+        <Text cls='bg-red b' size={40}>{txt2}</Text>
+          <View cls='flx-row mt2'>
             <TouchableOpacity>
-              <Octicons name='bookmark' size={32} />
+              <Link to='/signup'>
+                <Octicons cls='ml3' name='bookmark' size={50} />
+              </Link>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Link to='/login'>
+                <Octicons cls='mr3' name='bookmark' size={50} />
+              </Link>
             </TouchableOpacity>
           </View>
       </View>

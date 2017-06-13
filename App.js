@@ -18,8 +18,8 @@ class App extends Component {
       <NativeRouter>
         <View>
           <Route exact path='/' component={LandingPage} />
-{ /*          <Route path='/signup' component={Signup} />
-          <Route path='/login' component={Login} />     */ }
+          <Route path='/signup' component={Signup} />
+          <Route path='/login' component={Login} />     
         </View>
       </NativeRouter>
     )
