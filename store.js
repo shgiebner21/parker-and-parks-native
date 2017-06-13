@@ -1,6 +1,9 @@
-import {createStore, combineReducers} from 'redux'
+import {createStore, combineReducers, applyMiddleware} from 'redux'
 import {set, lensProp} from 'ramda'
 import thunk from 'redux-thunk'
+import PouchDB from 'pouchdb-react-native'
+
+const db = new PouchDB('parker-and-parks')
 
 
 
@@ -133,7 +136,10 @@ const store = createStore(
     park,
     badges,
     validate
-  })
+  }),
+  applyMiddleware(thunk)
 )
+
+store.dispatch({ type: 'SET_DB', payload: db })
 
 export default store
