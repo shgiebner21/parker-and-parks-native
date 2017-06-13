@@ -10,7 +10,9 @@ class Login extends Component {
 
     return(
       <View cls='mt3'>
-        <Text>I am a Login page</Text>
+        <View cls='aic ma3'>
+          <Text cls='red bg-lightgreen b h2'>Login page</Text>
+        </View>
         <View cls='ma3'>
           <ScrollView>
             <Form ref='login form'>

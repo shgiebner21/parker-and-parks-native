@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import { View, ListView, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import { View, ListView, Text, StyleSheet, Image, TouchableOpacity, Button } from 'react-native'
 import { Link } from 'react-router-native'
 import NativeTachyons, { wrap } from 'react-native-style-tachyons'
 import { Octicons } from '@expo/vector-icons'
@@ -23,6 +23,7 @@ class LandingPage extends Component {
            <Text cls='bg-red b' size={40} style={styles.text}>{txt}</Text>
         <Text cls='bg-red b' size={40}>{txt2}</Text>
           <View cls='flx-row mt2'>
+            <Button title='Signup' />
             <TouchableOpacity>
               <Link to='/signup'>
                 <Octicons cls='ml3' name='bookmark' size={50} />
@@ -33,6 +34,7 @@ class LandingPage extends Component {
                 <Octicons cls='mr3' name='bookmark' size={50} />
               </Link>
             </TouchableOpacity>
+            <Button title='Login' />
           </View>
       </View>
     )

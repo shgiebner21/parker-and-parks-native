@@ -2,26 +2,53 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { wrap } from 'react-native-style-tachyons'
 import { View, Text, ScrollView } from 'react-native'
+import { Ionicons } from '@expo/vector-icons'
 import { Form, Separator, InputField } from 'react-native-form-generator'
 import TextField from '../components/input-text'
 
+ const saveSignup = (family) => (dispatch, getState) => {
+  const { db, family } = getState()
+  console.log('saveSignup family is ', family)
+  db.post(family)
+    .then(fam => {
+      if (fam.ok) {
+        history.push('/')
+      }
+    })
+    .catch(err => console.log(err))
+}
+
+
 class Signup extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      formData: {}
+    }
+  }
+  handleFormChange(formData) {
+    console.log(formData)
+    this.setState({ formData: formData })
+    this.props.onFormChange && this.props.onFormChange(formData)
+  }
+
+
   render() {
-    const props = this.props
 
     return(
       <View cls='mt3'>
-        <View cls='ma3'>
-          <Text>I am a Signup page</Text>
+        <View cls='aic ma3'>
+          <Text cls='red bg-lightgreen b h2'>Signup page</Text>
         </View>
         <ScrollView>
           <Form ref='signup form'
-                onSubmit={props.submit(props.history, props.family)}
+                onChange={this.handleFormChange.bind(this)}
           >
+{/*                onSubmitEditing={props.dispatch(saveSignup(props.history, props.family)) }   */}
             <InputField ref='first_name'
                         label='Parent First Name'
                         placeholder='enter first name here'
-                        onChange={e => props.changeParentFirst(e.target.value)}
+
                         optional={false}
             />
             <InputField ref='last_name'
