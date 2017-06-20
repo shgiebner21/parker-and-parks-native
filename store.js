@@ -10,7 +10,6 @@ const db = new PouchDB('parker-and-parks')
 const store = createStore(
   combineReducers({
     family: (state=[], action) => {
-      console.log('in Store, action.payload is ', action.payload)
       switch (action.type) {
         case 'SET_PARENT_FIRST':
           return set(lensProp('parentFirst'), action.payload, state)

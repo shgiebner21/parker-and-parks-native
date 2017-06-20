@@ -9,6 +9,10 @@ import BasicButton from '../components/basic-button'
 
 NativeTachyons.build({ rem: 16 }, StyleSheet)
 
+const callMe = () => {
+  console.log('I am a fake function')
+}
+
 class LandingPage extends Component {
 
   render () {
@@ -23,7 +27,8 @@ class LandingPage extends Component {
            <Text cls='bg-red b' size={40} style={styles.text}>{txt}</Text>
         <Text cls='bg-red b' size={40}>{txt2}</Text>
           <View cls='flx-row mt2'>
-            <Button title='Signup' />
+            <Button title='Signup'
+                    onPress={ () => callMe() }/>
             <TouchableOpacity>
               <Link to='/signup'>
                 <Octicons cls='ml3' name='bookmark' size={50} />
@@ -34,7 +39,13 @@ class LandingPage extends Component {
                 <Octicons cls='mr3' name='bookmark' size={50} />
               </Link>
             </TouchableOpacity>
-            <Button title='Login' />
+            <TouchableOpacity>
+              <Link to='/form'>
+                <Octicons cls='mr3' name='bookmark' size={50} />
+              </Link>
+            </TouchableOpacity>
+            <Button title='Login'
+                    onPress={ () => callMe() }/>
           </View>
       </View>
     )

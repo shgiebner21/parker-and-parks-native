@@ -9,6 +9,8 @@ import LandingPage from './web/src/pages/landing'
 import Signup from './web/src/pages/signup'
 import Login from './web/src/pages/login'
 import Header from './web/src/components/header'
+import FormView from './web/src/pages/form-view'
+
 
 NativeTachyons.build({ rem: 16 }, StyleSheet)
 
@@ -19,7 +21,8 @@ class App extends Component {
         <View>
           <Route exact path='/' component={LandingPage} />
           <Route path='/signup' component={Signup} />
-          <Route path='/login' component={Login} />     
+          <Route path='/login' component={Login} />
+          <Route path='/form' component={FormView} />
         </View>
       </NativeRouter>
     )

@@ -1,21 +1,35 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { wrap } from 'react-native-style-tachyons'
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, Button } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { Form, Separator, InputField } from 'react-native-form-generator'
 import TextField from '../components/input-text'
 
- const saveSignup = (family) => (dispatch, getState) => {
-  const { db, family } = getState()
-  console.log('saveSignup family is ', family)
-  db.post(family)
-    .then(fam => {
-      if (fam.ok) {
-        history.push('/')
-      }
-    })
-    .catch(err => console.log(err))
+
+const addFamily = {parentFirst: "Jen",
+  parentLast: "Kloska",
+  eMail: "kloska@lowes.com",
+  cellPhone: "8036227075",
+  streetAddress: "5555 Main Street",
+  city: "Charlotte",
+  state: "NC",
+  zip: "55555",
+  password: "kloska",
+  timeStamp: "June 16th 2017, 3:14 pm",
+  familyId: "JenKloskakloska@lowes.com8036227075"}
+
+const handleSubmit = (formData) => {
+  console.log('inside handleSubmit function, JSON formData is ', JSON.stringify(formData))
+  fetch('https://localhost:8080/family', {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify(formData)
+  })
+  .then(resp => resp.json())
+  .then(resp => console.log('exiting handleSubmit function'))
 }
 
 
@@ -44,7 +58,6 @@ class Signup extends Component {
           <Form ref='signup form'
                 onChange={this.handleFormChange.bind(this)}
           >
-{/*                onSubmitEditing={props.dispatch(saveSignup(props.history, props.family)) }   */}
             <InputField ref='first_name'
                         label='Parent First Name'
                         placeholder='enter first name here'
@@ -58,6 +71,7 @@ class Signup extends Component {
             />
             <InputField ref='e-mail'
                         label='E-Mail Address'
+                        keyboardType='email-address'
                         optional={false}
             />
             <InputField ref='cell_phone'
@@ -89,6 +103,8 @@ class Signup extends Component {
                           placeholder='Must contain xxx'
                           optional={false}
             />
+          <Button title='Signup'
+                  onPress={ () => handleSubmit(addFamily) } />
           </Form>
         </ScrollView>
       </View>

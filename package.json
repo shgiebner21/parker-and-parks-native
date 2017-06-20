@@ -30,6 +30,7 @@
     "react-native-button": "^2.0.0",
     "react-native-form-generator": "^0.9.9",
     "react-native-style-tachyons": "^3.3.3",
+    "react-native-vector-icons": "^4.2.0",
     "react-redux": "^5.0.4",
     "react-router-dom": "^4.1.1",
     "react-router-native": "^4.1.1",
