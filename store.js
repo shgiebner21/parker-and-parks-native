@@ -9,7 +9,7 @@ const db = new PouchDB('parker-and-parks')
 
 const store = createStore(
   combineReducers({
-    family: (state=[], action) => {
+    familyOld: (state=[], action) => {
       switch (action.type) {
         case 'SET_PARENT_FIRST':
           return set(lensProp('parentFirst'), action.payload, state)
@@ -31,8 +31,17 @@ const store = createStore(
             return set(lensProp('zip'), action.payload, state)
           case 'SET_PASSWORD':
             return set(lensProp('password'), action.payload, state)
-          case 'SET_FAMILY':
-            return action.payload
+          // case 'SET_FAMILY':
+          //   return action.payload
+        default:
+          return state
+      }
+    },
+    family: (state=[], action) => {
+console.log('SET_FAMILY state is ', action.payload)
+      switch (action.type) {
+        case 'SET_FAMILY':
+          return action.payload
         default:
           return state
       }

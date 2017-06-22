@@ -40,7 +40,7 @@ class LandingPage extends Component {
               </Link>
             </TouchableOpacity>
             <TouchableOpacity>
-              <Link to='/form'>
+              <Link to='/family'>
                 <Octicons cls='mr3' name='bookmark' size={50} />
               </Link>
             </TouchableOpacity>

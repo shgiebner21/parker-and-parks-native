@@ -8,30 +8,15 @@ import TextField from '../components/input-text'
 
 
 const addFamily = {parentFirst: "Jen",
-  parentLast: "Kloska",
-  eMail: "kloska@lowes.com",
-  cellPhone: "8036227075",
-  streetAddress: "5555 Main Street",
-  city: "Charlotte",
-  state: "NC",
-  zip: "55555",
-  password: "kloska",
-  timeStamp: "June 16th 2017, 3:14 pm",
+  parentLast: "Kloska",  eMail: "kloska@lowes.com",
+  cellPhone: "8036227075",  streetAddress: "5555 Main Street",
+  city: "Charlotte",  state: "NC",  zip: "55555",
+  password: "kloska",  timeStamp: "June 16th 2017, 3:14 pm",
   familyId: "JenKloskakloska@lowes.com8036227075"}
 
-const handleSubmit = (formData) => {
-  console.log('inside handleSubmit function, JSON formData is ', JSON.stringify(formData))
-  fetch('https://localhost:8080/family', {
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    method: 'POST',
-    body: JSON.stringify(formData)
-  })
-  .then(resp => resp.json())
-  .then(resp => console.log('exiting handleSubmit function'))
-}
-
+const postFamily = family => dispatch => {
+  dispatch({ type: 'SET_FAMILY', payload: family })
+  }
 
 class Signup extends Component {
   constructor(props) {
@@ -104,7 +89,8 @@ class Signup extends Component {
                           optional={false}
             />
           <Button title='Signup'
-                  onPress={ () => handleSubmit(addFamily) } />
+                  onPress={ () => this.props.dispatch(postFamily(addFamily))
+                  } />
           </Form>
         </ScrollView>
       </View>
